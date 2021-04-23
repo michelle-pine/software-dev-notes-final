@@ -1,0 +1,699 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>Software Dev Course Notes</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+  --side-bar-bg-color: #073642;
+  --text-color: #93a1a1;
+  --item-hover-bg-color: #073642;
+  --window-border: 1px solid #657b83;
+  --active-file-bg-color: #002b36;
+  --active-file-text-color: #93a1a1;
+  --item-hover-text-color: #93a1a1;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Montserrat", "Montserrat", sans-serif, "Roboto Sans",
+    "Liberation Mono", monospace;
+  color: #839496;
+  line-height: 1.6;
+  background-color: #002b36;
+}
+
+#write {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 30px 40px 30px;
+  padding-top: 20px;
+  padding-bottom: 100px;
+}
+
+#write > ul:first-child,
+#write > ol:first-child {
+  margin-top: 30px;
+}
+
+body > *:first-child {
+  margin-top: 0 !important;
+}
+
+body > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+a {
+  color: #2aa198;
+}
+
+.md-toc-inner {
+  color: #93a1a1 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  line-height: 1.4;
+  cursor: text;
+}
+
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+  /*background: url("file:///C://Users//miche//AppData//Roaming//images/modules/styleguide/para.png") no-repeat 10px center;*/
+  text-decoration: none;
+}
+
+h1 tt,
+h1 code {
+  font-size: inherit;
+}
+
+h2 tt,
+h2 code {
+  font-size: inherit;
+}
+
+h3 tt,
+h3 code {
+  font-size: inherit;
+}
+
+h4 tt,
+h4 code {
+  font-size: inherit;
+}
+
+h5 tt,
+h5 code {
+  font-size: inherit;
+}
+
+h6 tt,
+h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #657b83;
+}
+
+h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #657b83;
+}
+
+h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+h4 {
+  font-size: 1.25em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+p,
+ul,
+ol,
+dl,
+table {
+  margin: 0.8em 0;
+}
+
+blockquote {
+  margin: 1.6em 3.2em;
+}
+
+li > ol,
+li > ul {
+  margin: 0 0;
+}
+
+hr {
+  height: 1px;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #657b83;
+  border: 0 none;
+  overflow: hidden;
+  box-sizing: content-box;
+  border-bottom: 1px solid #657b83;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+body > h1:first-child + h2 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+body > h3:first-child,
+body > h4:first-child,
+body > h5:first-child,
+body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+  margin-top: 0;
+}
+
+li p.first {
+  display: inline-block;
+}
+
+ul,
+ol {
+  padding-left: 30px;
+}
+
+ul:first-child,
+ol:first-child {
+  margin-top: 0;
+}
+
+ul:last-child,
+ol:last-child {
+  margin-bottom: 0;
+}
+
+blockquote {
+  border-left: 4px solid #6c71c4;
+  padding: 0 15px;
+  color: #93a1a1;
+}
+
+blockquote blockquote {
+  padding-right: 0;
+}
+
+table {
+  padding: 0;
+  word-break: initial;
+}
+
+table tr {
+  border-top: 1px solid #cccccc;
+  margin: 0;
+  padding: 0;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+table tr th {
+  font-weight: bold;
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+
+table tr td {
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+
+table tr th:first-child,
+table tr td:first-child {
+  margin-top: 0;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+  margin-bottom: 0;
+}
+
+.CodeMirror-gutters {
+  border-right: 1px solid #ddd;
+}
+
+.md-fences,
+code,
+tt {
+  background-color: #073642;
+  color: #2aa198;
+  border-radius: 3px;
+  padding: 0;
+  font-family: "Montserrat", sans-serif, "Roboto Mono", "Liberation Mono",
+    Courier, monospace;
+  padding: 2px 4px 0px 4px;
+  font-size: 0.9em;
+}
+
+.md-fences {
+  margin-bottom: 15px;
+  margin-top: 15px;
+  padding: 0.2em 1em;
+  padding-top: 8px;
+  padding-bottom: 6px;
+}
+
+.task-list {
+  padding-left: 0;
+}
+
+.task-list-item {
+  padding-left: 32px;
+}
+
+.task-list-item input {
+  top: 3px;
+  left: 8px;
+}
+
+@media screen and (min-width: 914px) {
+  /*body {
+        width: 854px;
+        margin: 0 auto;
+    }*/
+}
+
+@media print {
+  html {
+    font-size: 13px;
+  }
+  table,
+  pre {
+    page-break-inside: avoid;
+  }
+  pre {
+    word-wrap: break-word;
+  }
+}
+
+.md-fences {
+  background-color: #073642;
+}
+
+#write pre.md-meta-block {
+  padding: 1rem;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border: 0;
+  border-radius: 3px;
+  color: #777777;
+  margin-top: 0 !important;
+}
+
+.mathjax-block > .code-tooltip {
+  bottom: 0.375rem;
+}
+
+#write > h3.md-focus:before {
+  left: -1.5625rem;
+  top: 0.375rem;
+}
+
+#write > h4.md-focus:before {
+  left: -1.5625rem;
+  top: 0.285714286rem;
+}
+
+#write > h5.md-focus:before {
+  left: -1.5625rem;
+  top: 0.285714286rem;
+}
+
+#write > h6.md-focus:before {
+  left: -1.5625rem;
+  top: 0.285714286rem;
+}
+
+.md-image > .md-meta {
+  border-radius: 3px;
+  font-family: "Montserrat", sans-serif, "Roboto Mono", "Liberation Mono",
+    Courier, monospace;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  color: inherit;
+  background-color: #073642;
+}
+
+.md-tag {
+  color: inherit;
+}
+
+.md-toc {
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+.sidebar-tabs {
+  border-bottom: none;
+}
+
+#typora-quick-open {
+  background-color: #073642;
+}
+
+#typora-quick-open-item {
+  background-color: #fafafa;
+  border-color: #fefefe #e5e5e5 #e5e5e5 #eee;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#md-notification:before {
+  top: 10px;
+}
+
+/** focus mode */
+
+.on-focus-mode blockquote {
+  border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header,
+.context-menu,
+.megamenu-content,
+footer {
+  font-family: "Montserrat", sans-serif, "Roboto Mono", "Liberation Mono",
+    monospace;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+  visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+  background-color: var(--side-bar-bg-color);
+}
+
+
+ :root {--mermaid-font-zoom:1.5em ;} 
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><p>&nbsp;</p><h1><a name="software-dev-notes-part-1" class="md-header-anchor"></a><span>Software Dev Notes Part 1</span></h1><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n2"><a class="md-toc-inner" href="#software-dev-notes-part-1">Software Dev Notes Part 1</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n4"><a class="md-toc-inner" href="#module-1-intro">Module 1: Intro</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n24"><a class="md-toc-inner" href="#general-purpose-principles">General Purpose Principles</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n74"><a class="md-toc-inner" href="#five-principles-of-oo-programming">Five Principles of OO Programming</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n96"><a class="md-toc-inner" href="#module-2-documenting-designdesign-patterns">Module 2: Documenting Design/Design Patterns</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n123"><a class="md-toc-inner" href="#crc-cards">CRC Cards</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n150"><a class="md-toc-inner" href="#uml">UML</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n240"><a class="md-toc-inner" href="#design-patterns">Design Patterns</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n278"><a class="md-toc-inner" href="#iterator-pattern">Iterator Pattern</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n286"><a class="md-toc-inner" href="#factory-pattern">Factory Pattern</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n290"><a class="md-toc-inner" href="#singleton-pattern">Singleton Pattern</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n296"><a class="md-toc-inner" href="#observer-pattern">Observer Pattern</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n304"><a class="md-toc-inner" href="#visitor-pattern">Visitor Pattern</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n328"><a class="md-toc-inner" href="#module-3-software-architecture">Module 3: Software Architecture</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n329"><a class="md-toc-inner" href="#different-architectures">Different Architectures</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n338"><a class="md-toc-inner" href="#monolithic">Monolithic</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n344"><a class="md-toc-inner" href="#layered">Layered</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n358"><a class="md-toc-inner" href="#pipeline">Pipeline</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n366"><a class="md-toc-inner" href="#plugins">Plugins</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n378"><a class="md-toc-inner" href="#event-driven-architecture">Event-Driven Architecture</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n390"><a class="md-toc-inner" href="#microservices">Microservices</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n418"><a class="md-toc-inner" href="#http-protocol">HTTP Protocol</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n481"><a class="md-toc-inner" href="#rest-protocol">REST Protocol</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n504"><a class="md-toc-inner" href="#rest-principles">REST Principles</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n549"><a class="md-toc-inner" href="#rest-methods">REST Methods</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n565"><a class="md-toc-inner" href="#parameters">Parameters</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n575"><a class="md-toc-inner" href="#module-4-javascript">Module 4: Javascript</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n608"><a class="md-toc-inner" href="#promises">Promises</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n644"><a class="md-toc-inner" href="#asyncawait">Async/Await</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n662"><a class="md-toc-inner" href="#web-clients">Web Clients</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n680"><a class="md-toc-inner" href="#module-5-testing">Module 5: Testing</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n728"><a class="md-toc-inner" href="#classifying-tests">Classifying Tests</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n772"><a class="md-toc-inner" href="#test-driven-development">Test-Driven Development</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n786"><a class="md-toc-inner" href="#process">Process</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n807"><a class="md-toc-inner" href="#strengths">Strengths</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n817"><a class="md-toc-inner" href="#weaknesses">Weaknesses</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n830"><a class="md-toc-inner" href="#variants">Variants</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n848"><a class="md-toc-inner" href="#evaluating-tests">Evaluating Tests</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n864"><a class="md-toc-inner" href="#functional-testing-adequacy">Functional Testing Adequacy</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n878"><a class="md-toc-inner" href="#coverage-of-abstraction-of-sut"><strong>Coverage of Abstraction of SUT</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n897"><a class="md-toc-inner" href="#structural-testing-adequacy">Structural Testing Adequacy</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n922"><a class="md-toc-inner" href="#structural-test-criteria"><strong>Structural Test Criteria</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n937"><a class="md-toc-inner" href="#mutation-testing"><strong>Mutation Testing</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n945"><a class="md-toc-inner" href="#regression-test-adequacy">Regression Test Adequacy</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n955"><a class="md-toc-inner" href="#not-useful-bad-tests"><strong>Not Useful (Bad) Tests</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n972"><a class="md-toc-inner" href="#test-smells"><strong>Test Smells</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n994"><a class="md-toc-inner" href="#what-makes-tests-good"><strong>What Makes Tests Good?</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1004"><a class="md-toc-inner" href="#testing-systems">Testing Systems</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n1032"><a class="md-toc-inner" href="#test-stub">Test Stub</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n1045"><a class="md-toc-inner" href="#test-spies">Test Spies</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n1053"><a class="md-toc-inner" href="#test-mocks">Test Mocks</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n1063"><a class="md-toc-inner" href="#test-fake">Test Fake</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n1077"><a class="md-toc-inner" href="#random-input">Random Input</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n1086"><a class="md-toc-inner" href="#weaknesses-of-test-doubles">Weaknesses of Test Doubles</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1100"><a class="md-toc-inner" href="#module-6-user-centered-design">Module 6: User-Centered Design</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1101"><a class="md-toc-inner" href="#determining-requirements">Determining Requirements</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1110"><a class="md-toc-inner" href="#usability">Usability</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1128"><a class="md-toc-inner" href="#user-centered-design">User-Centered Design</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1146"><a class="md-toc-inner" href="#forms-of-user-evaluation">Forms of User Evaluation</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n1161"><a class="md-toc-inner" href="#heuristics">Heuristics</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1253"><a class="md-toc-inner" href="#module-7-debugginggit">Module 7: Debugging/Git</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1355"><a class="md-toc-inner" href="#git">Git </a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1357"><a class="md-toc-inner" href="#module-8-code-improvement">Module 8: Code Improvement</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1358"><a class="md-toc-inner" href="#static-program-analysis">Static Program Analysis</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1406"><a class="md-toc-inner" href="#code-smells-and-refactoring">Code Smells and Refactoring</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1441"><a class="md-toc-inner" href="#module-9-distributed-systems-and-security">Module 9: Distributed systems and security</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1442"><a class="md-toc-inner" href="#what-is-a-distributed-system">What is a distributed system?</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1499"><a class="md-toc-inner" href="#strategies-for-building-distributed-systems">Strategies for building distributed systems</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1532"><a class="md-toc-inner" href="#software-engineering-and-security-threats">Software Engineering and Security Threats</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1574"><a class="md-toc-inner" href="#engineering-secure-software">Engineering Secure Software</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1638"><a class="md-toc-inner" href="#module-10-continuous-development">Module 10: Continuous Development</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1640"><a class="md-toc-inner" href="#software-processes-and-continuous-development">Software processes and continuous development</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1702"><a class="md-toc-inner" href="#continuous-integration">Continuous integration </a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1748"><a class="md-toc-inner" href="#deployment-infranstructure">Deployment Infranstructure</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1813"><a class="md-toc-inner" href="#continuous-delivery">Continuous Delivery</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1862"><a class="md-toc-inner" href="#module-11-engineering-equitable-software">Module 11: Engineering Equitable Software</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1863"><a class="md-toc-inner" href="#engineering-equitable-software">Engineering Equitable Software</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1901"><a class="md-toc-inner" href="#ethics-in-software-engineering">Ethics in Software Engineering</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1971"><a class="md-toc-inner" href="#acceptance-and-inclusivity-testing">Acceptance and Inclusivity Testing</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n2019"><a class="md-toc-inner" href="#module-12-estimation-and-productivity">Module 12: Estimation and Productivity</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n2020"><a class="md-toc-inner" href="#planning-software-projects">Planning Software Projects</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n2067"><a class="md-toc-inner" href="#metrics-in-software-engineering">Metrics in Software Engineering</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n2101"><a class="md-toc-inner" href="#strategies-for-successful-software-teams">Strategies for Successful Software Teams</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n2151"><a class="md-toc-inner" href="#measuring-engineering-productivity">Measuring Engineering Productivity</a></span></p></div><h2><a name="module-1-intro" class="md-header-anchor"></a><span>Module 1: Intro</span></h2><ul><li><p><strong><span>Software engineering</span></strong><span> is the tools/processes we use to design, construct, maintain programs over time</span></p></li><li><p><span>There&#39;s more to development to good code, there&#39;s no one right way to develop software</span></p></li><li><p><span>Software should be comprehensible by humans, easily maintainable, and reusable</span></p><ul><li><strong><span>Main challenge: controlling complexity</span></strong></li><li><span>readable, flexible, and modular</span></li></ul></li><li><p><span>Two pieces of code are </span><strong><span>coupled</span></strong><span> if a change in one demands a change in the other.</span></p><ul><li><span>alternatively called: connascence (meaning born together)</span></li><li><span>the more two pieces of code are coupled, the harder they are to understand and modify because you have to understand both to understand either of them</span></li></ul></li></ul><h3><a name="general-purpose-principles" class="md-header-anchor"></a><span>General Purpose Principles</span></h3><ol start='' ><li><p><strong><span>Use Good Names</span></strong><span> </span></p><ol start='' ><li><span>Replace magic numbers with good names</span></li><li><span>Name data types accurately for what they do or will be used for</span></li><li><span>Name functions/methods in terms of what they do</span></li></ol></li><li><p><strong><span>Design Your Data</span></strong></p><ol start='' ><li><p><span>Decide what part of the information in the real world needs to be represented as data</span></p></li><li><p><span>Decide how that information needs to be represented as data</span></p></li><li><p><span>Document how to interpret the data as info about the real world</span></p><ol start='' ><li><span>leave lots of comments i guess</span></li></ol></li></ol></li><li><p><strong><span>One method/one job</span></strong></p><ol start='' ><li><span>You might want to test one part but not the other</span></li><li><span>It&#39;s easier to test a method that does only one job</span></li><li><span>You only have to change the method&#39;s </span></li><li><span>&quot;Single Responsibility Principle&quot;</span></li></ol></li><li><p><strong><span>Don&#39;t repeat yourself</span></strong></p><ol start='' ><li><span>If you have some quantity that you use more than once, give it a name and use the name. That way you only need to change it in one place</span></li><li><span>If you have a task that you do in many places, make it into a procedure</span></li><li><span>If the tasks are slightly different, turn the differences into parameters</span></li><li><span>&quot;Single Point of Control&quot;</span></li></ol></li><li><p><strong><span>Don&#39;t hardcode things that are likely to change</span></strong></p><ol start='' ><li><span>Self-explanatory; ex) don&#39;t place the tax rate into the code, switch it to a variable</span></li></ol></li></ol><h3><a name="five-principles-of-oo-programming" class="md-header-anchor"></a><span>Five Principles of OO Programming</span></h3><ol start='' ><li><p><strong><span>Make Your Interfaces Meaningful</span></strong></p><ul><li><p><span>interfaces are where we specify behaviors</span></p><ol start='' ><li><span>behavior: what a single method does, such as returning a value or causing a mutation</span></li><li><span>compiler only checks syntax, not behavior, so make sure the implementation of the interface behaves as expectedi</span></li><li><strong><span>interface segregation</span></strong><span>: if you have a class that needs to advertise two sets of behavior, have it implement two interfaces (one interface, one job)</span></li></ol></li></ul></li><li><p><strong><span>Depend Only on Behaviors, Not Their Implementation</span></strong></p><ul><li><strong><span>dependency inversion:</span></strong><span> high level modules should not depend on low level modules, they should depend on abstractions aka behaviors.</span></li><li><strong><span>delegation</span></strong><span>: using composition to avoid hard work. You delegate tasks to other &quot;workers&quot; or methods. you don&#39;t know how that method is implemented, just what it returns. </span></li></ul></li><li><ul><li><strong><span>Keep Things as Private as You Can</span></strong>
+<span>    1. You don&#39;t want people messing with your code, depending on details of your code, or breaking critical invariants</span>
+<span>      2. </span><strong><span>Encapsulation</span></strong></li></ul><ol start='4' ><li><p><strong><span>Favor Dynamic Dispatch over Conditionals</span></strong></p><ul><li><span>Otherwise known as have different classes that implement an interface</span></li><li><span>Make codes more extensible, readable, and maintainable</span>
+<span>    1. less editing in various pleases</span></li><li><strong><span>open-closed principle</span></strong><span>: the idea that you can extend your system by adding code, rather than changing it. &quot;open&quot; for extension but &quot;closed&quot; for modification</span></li><li><span>OO organization is better when new data variants are more likely than new operations</span></li></ul></li><li><p><strong><span>Favor Interfaces over Subclassing</span></strong></p><ul><li><span>An  interface specifies some of the behavior of the classes that implement it</span></li><li><span>A superclass specifies some of algorithms of the classes that inherit from it</span></li><li><span>Subclasses can see some of the details of your algorithm, which weakens encapsulation</span>
+<span>    1. can violate invariants if properties are changed by the subclass</span>
+<span>    2. </span></li></ul></li></ol></li></ol><h2><a name="module-2-documenting-designdesign-patterns" class="md-header-anchor"></a><span>Module 2: Documenting Design/Design Patterns</span></h2><ul><li><p><span>You and your teammates need to have a common understanding of things in your program</span></p><ul><li><span>What are their names?</span></li><li><span>What do the represent?</span></li><li><span>How do they interact?</span></li></ul></li></ul><h3><a name="crc-cards" class="md-header-anchor"></a><span>CRC Cards</span></h3><p><img src="./images/image-20210405145550859.png" referrerpolicy="no-referrer" alt="image-20210405145550859"></p><p><strong><span>Class</span></strong><span>: </span></p><ul><li><span>the name of the &quot;thing&quot; in your program. Could be a class/interface/type/etc</span></li></ul><p><strong><span>Responsibilities</span></strong></p><ul><li><span>the main job of this thing in the program. Should be simple according to the single responsibility principle. </span></li></ul><p><strong><span>Collaborators</span></strong><span>:</span></p><ul><li><span>other &quot;things&quot; with which thing class interacts</span></li><li><span>the thing with which this class is coupled</span></li><li><span>all things the class uses, all all the things that directly use this class</span></li></ul><p><span>Cards can be moved and stacked and rearranged</span></p><h3><a name="uml" class="md-header-anchor"></a><span>UML</span></h3><p><img src="./images/image-20210405150432729.png" referrerpolicy="no-referrer" alt="image-20210405150432729"></p><ul><li><p><span>UML is a general purpose visual modeling language developed by an industry consortium in 1997</span></p></li><li><p><span>Most common diagram: the Class Diagram</span></p></li><li><p><strong><span>Class Diagram:</span></strong><span> three part box containing</span></p><ul><li><p><strong><span>class name</span></strong><span> (required)</span></p></li><li><p><span>list of </span><strong><span>attributes</span></strong><span> with names and types (optional)</span></p><ul><li><p><span>the members/instance variables/properties) whose values are either</span><span>	</span></p><ul><li><span>scalars (&quot;simple&quot; attributes)</span></li><li><span>arrays or lists of scalars (&quot;multivalued scalars&quot;)</span></li><li><span>simple structs (ex: dates or names)</span></li><li><strong><span>Class members whose values are full-fledged objects or members of another class are usually represented as relationships</span></strong></li></ul></li></ul></li><li><p><span>list of </span><strong><span>methods</span></strong><span> with argument lists (optional)</span></p></li><li><p><span>classes with special roles may be annotated with stereotypes, which are written with </span><code>&lt;&lt;...&gt;&gt;</code></p></li></ul></li><li><p><strong><span>Relationships</span></strong><span>:</span></p><ul><li><p><span>UML has notations for 3 types of relationships between classes</span></p><ul><li><p><strong><span>Association</span></strong><span> (most common)</span></p><p><img src="./images/image-20210405151142166.png" referrerpolicy="no-referrer" alt="image-20210405151142166"></p><ul><li><p><span>An association is a simple semantic relationship between two objects that indicates a link or dependency between them</span></p></li><li><p><span>can be directed (meaning there is a relationship between one object to another), or bi-directional (meaning it works both ways)</span></p></li><li><p><span>Associations can be navigable, meaning that from one object you can find the associated object. it is notated with an arrow to indicate the direction in which it flows</span></p></li><li><p><span>An association with no arrows means its navigability is unspecificed</span></p></li><li><p><span>Associations also have </span><strong><span>cardinality</span></strong><span>. This tells us  whether the relationship is 1:1...2 or 1:1..N</span></p><ul><li><span>1:1 - one to one</span></li><li><span>1:1...* at least one </span></li><li><span>1:0...1 at most one</span></li></ul><p><img src="./images/image-20210405151325864.png" referrerpolicy="no-referrer" alt="image-20210405151325864"></p><p><span>the solid triangle indicates how a human should interpret the relationship, it does not notate navigability </span></p></li><li><p><span>Associations should express something about the real world</span></p></li></ul></li><li><p><strong><span>Generalization</span></strong><span>: </span></p><p><img src="./images/image-20210405151804347.png" referrerpolicy="no-referrer" alt="image-20210405151804347"></p><ul><li><p><span>grouping of entities based on common attributes</span></p></li><li><p><span>more general as you move up, more specific as you move down</span></p></li><li><p><span>more specific may inherit attributes/operations from the more general</span></p><p><img src="./images/image-20210405151822999.png" referrerpolicy="no-referrer" alt="image-20210405151822999"></p></li><li><p><span>In UML, </span><code>implements</code><span> is considered to be a form of generalization</span></p><ul><li><span>interfaces are notated like a class with the stereotype </span><code>&lt;&lt;interface&gt;&gt;</code><span> alternatively, the name of the interface might be given in italics</span></li><li><span>the &quot;implements&quot; relationship may be notated with a dotted or dashed land, or by an open-headed arrow</span></li></ul></li></ul></li><li><p><strong><span>Aggregation</span></strong></p><ul><li><span>A &quot;has&quot; relationship (i.e. A car has wheels)</span></li><li><span>Aggregation is an association that means a &quot;whole/part&quot; or &quot;containment&quot; relationship</span></li><li><span>if it&#39;s confusing, just say it&#39;s an association</span></li><li><span>shown by a diamond arrowhead next to the item that does the &quot;having&quot;</span></li></ul></li></ul></li></ul></li></ul><h3><a name="design-patterns" class="md-header-anchor"></a><span>Design Patterns</span></h3><p><span>A design pattern is a piece of advice on how to design your code</span></p><p><strong><span>Elements of a pattern:</span></strong></p><ul><li><span>pattern name</span></li><li><span>the problem (when to apply the pattern)</span></li><li><span>the solution (describes the elements that make up the pattern)</span></li><li><span>the consequences (the results and trade-offs of applying the pattern)</span></li></ul><p><strong><span>Adapter Pattern</span></strong><span>:</span></p><ul><li><p><span>Create a class that adapts the methods/properties of one class into the methods/properties of another</span></p></li><li><p><span>example problem: </span></p><ul><li><span>you have a list but you need a stack</span></li><li><span>solution: create a class that ranslating a list to a stack by adding the stack related functions</span></li><li><span>Consequences: you now use the list as if it is a stack</span></li></ul></li><li><p><img src="./images/image-20210405152739380.png" referrerpolicy="no-referrer" alt="image-20210405152739380"></p></li></ul><p><strong><span>Composite Pattern</span></strong><span>:</span></p><ul><li><p><span>Allows you to represent tree-like data</span></p></li><li><p><span>Example problem:</span></p><ul><li><span>You have to represent different shapes, such as a square, a circle, or a triangle</span></li><li><span>solution: create a </span><code>Shape</code><span> interface and three implementations: </span><code>Square</code><span>, </span><code>Circle</code><span>, </span><code>Triangle</code></li></ul></li></ul><h4><a name="iterator-pattern" class="md-header-anchor"></a><span>Iterator Pattern</span></h4><ul><li><span>use built-in iterators in typescript such as </span><code>map</code><span>, </span><code>forEach</code><span>, </span><code>reduce</code></li><li><span>or use a </span><code>for</code><span> loop to iterate through each item</span></li><li><span>much of the complexity of the pattern has been absorbed into the coding language</span></li></ul><h4><a name="factory-pattern" class="md-header-anchor"></a><span>Factory Pattern</span></h4><ul><li><span>Create a class with a static method to get an instance of a particular class</span></li></ul><h4><a name="singleton-pattern" class="md-header-anchor"></a><span>Singleton Pattern</span></h4><ul><li><span>Make the factory have a private construction, and instantiate a particular class only once</span></li><li><span>have a static method in the factory to return the same instance of the class every time</span></li></ul><h4><a name="observer-pattern" class="md-header-anchor"></a><span>Observer Pattern</span></h4><ul><li><span>Use when you need to notify classes or objects that are &quot;watching&quot; changes to a particular object</span></li><li><span>The object being observed (the &quot;subject&quot;)  keeps a list of the watchers who need to be notified when something changes</span></li><li><span>When a new object wants to subscribe to changes, it registers with the subject</span></li></ul><h4><a name="visitor-pattern" class="md-header-anchor"></a><span>Visitor Pattern</span></h4><ul><li><p><span>Let&#39;s say you have a hierarchical structure, and many operations that will need to traverse it—but you don&#39;t know in advance what those operations will be. </span></p><ul><li><span>Each operation can be implemented imperatively, perhaps by accumulating the answer in some variable. </span></li><li><span>You&#39;d like to keep the internal organization of each node hidden from the operation</span></li></ul></li><li><p><span>Represent each operation as a class, with a method for each kind of node you have.</span></p><ul><li><span>the class is called the </span><code>Visitor</code><span> class</span></li></ul></li><li><p><span>To invoke the operation, create a new object of the Visitor class (called the </span><code>visitor</code><span>, lowercase)</span></p></li><li><p><span>Then send the visitor to the node</span></p></li><li><p><span>The node calls back to the appropriate method of the visitor, then sends the visitor on to each of its children.</span></p></li></ul><p><img src="./images/image-20210405154728797.png" referrerpolicy="no-referrer" alt="image-20210405154728797"></p><p><img src="./images/image-20210405154804843.png" referrerpolicy="no-referrer" alt="image-20210405154804843"></p><p><img src="./images/image-20210405154842755.png" referrerpolicy="no-referrer" alt="image-20210405154842755"></p><p><img src="./images/image-20210405154926102.png" referrerpolicy="no-referrer" alt="image-20210405154926102"></p><h2><a name="module-3-software-architecture" class="md-header-anchor"></a><span>Module 3: Software Architecture</span></h2><h3><a name="different-architectures" class="md-header-anchor"></a><span>Different Architectures</span></h3><ul><li><p><span>Goal: create a high-level model of the system</span></p><ul><li><span>Abstract details away in reusable components</span></li></ul></li><li><p><span>There are different types  of top-level software organizations</span></p></li></ul><h4><a name="monolithic" class="md-header-anchor"></a><span>Monolithic</span></h4><ul><li><span>A single app, with no particular organization</span></li><li><span>Ok for single-dev, short-lived projects</span></li></ul><h4><a name="layered" class="md-header-anchor"></a><span>Layered</span></h4><p><img src="./images/image-20210405155447756.png" referrerpolicy="no-referrer" alt="image-20210405155447756"></p><ul><li><p><span>Each layer depends on services from the layer or layers below</span></p></li><li><p><span>Organize teams by layer, different layers require different expertise</span></p></li><li><p><span>When layers are run on different pieces of hardware, they are sometimes called &quot;tiers&quot;</span></p></li><li><p><span>Operating systems are layered</span></p><ul><li><span>Layers communicate through procedure calls and callbacks (sometimes called &quot;up-calls&quot;)</span></li></ul></li></ul><h4><a name="pipeline" class="md-header-anchor"></a><span>Pipeline</span></h4><ul><li><span>divide tasks into stages</span></li><li><span>good for straight-line processes such as image processing</span></li><li><span>also good for visualizing hardware</span></li></ul><h4><a name="plugins" class="md-header-anchor"></a><span>Plugins</span></h4><ul><li><span>System consists of a small core (the microkernel) for essential functions, and lots of hooks for adding other services</span></li><li><span>Highly extensible</span></li><li><span>Plug-ins can be designed by small less-experienced teams, even by users!</span></li><li><span>Connection methods may vary</span></li><li><span>VSCode is an example</span></li></ul><h4><a name="event-driven-architecture" class="md-header-anchor"></a><span>Event-Driven Architecture</span></h4><ul><li><span>Metaphor: a bunch of bureaucrats shuffling papers</span></li><li><span>Each processing unit  has an inbox and one or more outboxes</span></li><li><span>Each unit takes a task from its inbox, processes it, and puts in the results in one or more outboxes</span></li><li><span>Stages are typically connected by async message queues</span></li><li><span>the flow is conditional, meaning something only happens if a task is inboxed/outboxed</span></li></ul><h4><a name="microservices" class="md-header-anchor"></a><span>Microservices</span></h4><ul><li><p><span>Overall task is divided into different components</span></p></li><li><p><span>Each component is implemented independently</span></p></li><li><p><span>Each component is independently replaceable, independently updatable</span></p></li><li><p><span>Components can be built as libraries, but more usually as web services</span></p></li><li><p><span>Advantages:</span></p><ul><li><span>services may scale differently, so can be implemented on hardware appropriate for each (how much cpu, memory, disk, etc?)</span></li><li><span>services are independent, so can be developed and deployed independently</span></li></ul></li><li><p><span>Disadvantages:</span></p><ul><li><span>service discovery - how do you find the services you need?</span></li><li><span>should services have organization, or all they all equals?</span></li><li><span>overall it&#39;s more complex</span></li></ul></li><li><p><span>they are highly scalable and trendy</span></p></li></ul><h3><a name="http-protocol" class="md-header-anchor"></a><span>HTTP Protocol</span></h3><ul><li><p><span>HTTP sands for HyperText Transfer Protocol</span></p></li><li><p><span>HTTP is asymmetric, it distinguishes between client and server</span></p><ul><li><span>the client initiates a request, the server replies by sending a response</span></li></ul></li><li><p><span>HTTP is stateless, each request/response pair is independent</span></p><ul><li><span>If the client intends the request to be part of the session, then the request must include all the data needed to allow the server to resume the ession at that point</span></li><li><span>HTTP is stateless but not sessionless</span></li></ul></li><li><p><span>HTTP is an application level protocol</span></p></li><li><p><span>Originally designed to transmit HTML data, but can be used to send anything</span></p></li><li><p><span>HTTP is extensible</span></p><ul><li><span>A request comes with </span><strong><span>headers</span></strong><span> which define the type of data the server is sending and wants back</span></li><li><span>A response comes with </span><strong><span>headers</span></strong><span> which indicates whether the request was successful or not and the format the data is transmitted</span></li><li><span>Headers may include other kinds of metadata</span></li></ul></li><li><p><span>Typical HTTP flow:</span></p><ul><li><strong><span>Client opens a TCP connection.</span></strong><span> This is the connection over which data will flow. Clients can create a fresh connection or reuse an existing one</span></li></ul></li><li><p><strong><span>Client sends a request</span></strong><span>. Consists of:</span></p><ul><li><p><span>a method (one of a few simple verbs)</span></p><ul><li><span>a path (a URL)</span></li><li><span>a version</span></li><li><span>headers</span></li><li><span>maybe a body</span></li></ul></li><li><p><strong><span>Server interprets the request</span></strong></p></li><li><p><strong><span>Server sends a response</span></strong><span>, which consists of:</span></p><ul><li><span>a version</span></li><li><span>a status code</span></li><li><span>a status message</span></li><li><span>some headers</span></li><li><span>maybe a body</span></li></ul></li></ul></li></ul><h3><a name="rest-protocol" class="md-header-anchor"></a><span>REST Protocol</span></h3><ul><li><p><span>We&#39;d like a remote procedure call (RPC) - when you need a service, you&#39;d like to call and immediately get things back</span></p><ul><li><p><span>not possible</span></p></li><li><p><span>there can be transmission delays (</span><strong><span>latency</span></strong><span>)</span></p></li><li><p><span>can the client do something useful in the meantime? (</span><strong><span>asynchrony</span></strong><span>). this leads to complexity</span></p></li><li><p><span>client/server mismatches add more complexity</span></p><ul><li><span>different languages, data representations, wire-transmission formats, etc</span></li></ul></li></ul></li><li><p><span>This is solved by using </span><strong><span>REST</span></strong><span>!</span></p></li><li><p><span>Representational State Transfer (REST) is a design philosophy</span></p><ul><li><span>interfaces that follow REST principles are called RESTful</span></li></ul></li></ul><h4><a name="rest-principles" class="md-header-anchor"></a><span>REST Principles</span></h4><ul><li><p><strong><span>Single Server</span></strong></p><ul><li><span>client doesn&#39;t worry about data, server doesn&#39;t worry about UI</span></li><li><span>server may pass request to other machines, but client doesn&#39;t know that</span></li><li><span>server should be a &quot;single box&quot; to the client</span></li></ul></li><li><p><strong><span>Stateless</span></strong></p><ul><li><span>no session state in server, each client must contain all info that the server needs to process request</span></li><li><span>client doesn&#39;t have to write a sequence of requests to get what they need</span></li></ul></li><li><p><strong><span>Uniform Interface</span></strong></p><ul><li><p><span>Associate URIs with resources</span></p><ul><li><p><span>URIs should hierarchically identify nouns that describe resources that exist, not verbs</span></p></li><li><p><span>examples:</span></p><ul><li><code>/cities/losangeles</code></li><li><code>transcripts/00345/graduate</code></li></ul></li><li><p><span>bad example:</span></p><ul><li><code>/getCity/losangeles</code></li></ul></li></ul></li><li><p><span>Actions (verbs) that can be taken with resources are specified by HTTP methods (see REST methods)</span></p></li></ul></li><li><p><strong><span>Uniform Cacheability</span></strong></p><ul><li><span>requests must classify themselves as cacheable or not</span></li></ul></li></ul><h4><a name="rest-methods" class="md-header-anchor"></a><span>REST Methods</span></h4><ul><li><p><span>GET: requests the server tor respond representation of a resource</span></p><ul><li><span>the path is the name of the resource</span></li></ul></li><li><p><span>POST: requests the server to create a resource</span></p><ul><li><span>the path is the name of the resource</span></li></ul></li><li><p><span>PUT: requests the server to change of the value of the resource to the given value</span></p></li><li><p><span>DELETE: requests the server to delete the resource</span></p></li></ul><h4><a name="parameters" class="md-header-anchor"></a><span>Parameters</span></h4><p><span>There are three ways to associates parameters with a request:</span></p><ul><li><strong><span>path parameters</span></strong><span>: </span><code>transcripts/00324/graduate</code><span> aka </span><code>transcripts/:studentid/:studentType</code></li><li><strong><span>query parameters</span></strong><span>: </span><code>transcripts/graduate?lastname=covey&amp;firstname=avery</code></li><li><strong><span>body parameters:</span></strong><span> typically done only for POST/PUT requests. they are placed in the first line of the body</span></li></ul><p><span>NOTE: I did not take notes on the demo of the </span><code>express.js</code><span> server, since this exam will not involve writing code</span></p><h2><a name="module-4-javascript" class="md-header-anchor"></a><span>Module 4: Javascript</span></h2><ul><li><p><span>A javascript execution state consists of a bunch of event handlers</span></p></li><li><p><span>An </span><strong><span>event handler</span></strong><span> is:</span></p><ul><li><span>A piece of code that is waiting for some event to happen</span></li><li><span>In javascript, all event handlers work in the same address state, meaning that they can communicate through shared space. This also means that switching between handlers can be fast. </span></li></ul></li><li><p><span>At any time, one event handler is running and the others are waiting</span></p></li><li><p><span>Types of </span><strong><span>events</span></strong><span>:</span></p><ul><li><span>some timer has reached a specific value</span></li><li><span>some input/output occurs</span></li><li><span>some other event handler(s) complete</span></li></ul></li><li><p><span>Javascript has &quot;run-to-completion&quot; semantics, meaning that it always runs to completion and is never interrupted</span></p><ul><li><span>a handler does not have to worry about some other handler overwriting its memory</span></li><li><span>this also means that a high priority task (like responding to a keystroke) can&#39;t interrupt a lower priority task</span></li><li><span>this means you should organize your computation into many handlers, all of which run to completion quickly</span></li><li><strong><span>When the running event handler completes, the scheduler chooses one of the other ready event handlers to execute</span></strong></li></ul></li></ul><h3><a name="promises" class="md-header-anchor"></a><span>Promises</span></h3><ul><li><p><span>A promise is an object representing the eventual completion or failure of a handler</span></p></li><li><p><span>A promise always in one of three states</span></p><ul><li><span>pending</span></li><li><span>fulfilled/resolved, meaning that it completed successfully</span></li><li><span>rejected, meaning that the handler failed</span></li></ul></li><li><p><span>Once a promise is fulfilled or rejected, it stays that way</span></p></li><li><p><span>A promise may have a </span><code>.then</code><span> property, which is a handler to be invoked when the promise is fulfilled. This ignores rejected promises</span></p></li><li><p><span>A promise may also have a </span><code>.catch</code><span> property, which is a handler invoked when the promise is rejected. It ignores resolved promises</span></p></li><li><p><code>.then</code><span> and </span><code>.catch</code><span> blocks can succeed or fail</span></p><ul><li><p><span>throwing an error counts as failure, anything else counts as succeeding</span></p></li><li><p><code>.then</code><span> and </span><code>catch</code><span> can also throw errors to their successors. If you throw an error in the callback passed to the </span><code>.then</code><span> block, it can be caught by the </span><code>.catch</code><span> block</span></p><p><code>aPromise.then(() =&gt; throw new Error(&quot;myError2&quot;)).catch((error) =&gt; {// should always run})</code></p></li></ul></li><li><p><span>The following creates p2, a whole new promise the represents the result of promise p1 followed by the callback if p1 fulfills:</span></p><p><code>const p2 = p1.then(callback);</code></p></li><li><p><span>p2 is ready when p1 is completed. When p2 is run, it refers to p1. If p1 was fulfilled, the value is passed to the callback, and p2 completes normally.</span></p></li><li><p><span>If p1 is rejected, p2 exits with an unhandled error</span></p></li><li><p><span>You can synchronize event handlers with </span><code>Promise.all[]</code></p></li></ul><h4><a name="asyncawait" class="md-header-anchor"></a><span>Async/Await</span></h4><p><span>You can avoid complicated </span><code>.then</code><span> </span><code>.catch</code><span> chains using </span><code>async</code><span> and </span><code>await</code><span>.</span></p><ul><li><p><span>Async functions are declared with the </span><code>async</code><span> keyword</span></p><p><code>async () =&gt; {}</code></p></li><li><p><span>With an async function, you can call another promise function, and await its result:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">async () =&gt; {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  const val = await aPromise();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  return val  + 2;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 91px;"></div><div class="CodeMirror-gutters" style="display: none; height: 91px;"></div></div></div></pre></li><li><p><span>you can also (optionally) use a typical try/catch to catch errors</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">async () =&gt; {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  try {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  const val = await aPromise();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  return val  + 2;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  } catch (e) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  console.log('error')</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 181px;"></div><div class="CodeMirror-gutters" style="display: none; height: 181px;"></div></div></div></pre></li><li><p><span>an async function always returns a promise</span></p></li><li><p><span>Because a promise is created, it is automatically thrown in the pool of handlers to be run when ready</span></p></li><li><p><span>the async keyword tells the compiler to convert the code into a typical </span><code>.then</code><span> </span><code>.catch</code><span> block</span></p></li></ul><h3><a name="web-clients" class="md-header-anchor"></a><span>Web Clients</span></h3><ul><li><p><span>you can use </span><code>await</code><span> to make sure client </span><code>API</code><span> calls complete in the order we want</span></p><ul><li><span>we want to wait for requests to complete before performing computations on the returned data</span></li><li><span>In the example in class, we had one file </span><code>remoteService.ts</code><span> that provides HTTP methods</span></li></ul><p><img src="./images/image-20210405193201949.png" referrerpolicy="no-referrer" alt="image-20210405193201949"></p><ul><li><span>We also had </span><code>dataService.ts</code><span> which provides REST endpoints that a client can request from</span></li></ul><p><img src="./images/image-20210405193243740.png" referrerpolicy="no-referrer" alt="image-20210405193243740"></p><ul><li><span>axios did all the work in terms of actually creating the http requests</span></li></ul><p>&nbsp;</p></li></ul><h2><a name="module-5-testing" class="md-header-anchor"></a><span>Module 5: Testing</span></h2><ul><li><p><span>Software Testing is the process of checking if software meets certain concrete requirements</span></p></li><li><p><span>Testing is carried out by execution of the software</span></p></li><li><p><strong><span>SUT</span></strong><span> = System Under Test consists of:</span></p><ul><li><span>Inputs</span></li><li><span>State</span></li><li><span>Outputs</span></li><li><span>State Change</span></li><li><span>(Other) Behavior</span></li></ul></li><li><p><span>A test for a SUT consists of </span></p><ul><li><span>Given [a certain state in the SUT]</span></li><li><span>When [certain inputs are presented]</span></li><li><span>Then [certain outputs, state change, and behavior are expected]</span></li></ul></li><li><p><span>Running a test</span></p><ul><li><span>Construct the situation by setting up the SUT to get the state ready</span></li><li><span>Apply the operation inputs</span></li><li><span>Check the outputs, verify the state change, handle the behavior</span></li></ul></li><li><p><strong><span>Dijkstra&#39;s Law</span></strong></p><ul><li><span>&quot;Program testing can be used to show the presence of bugs, but never to show their absence&quot;</span></li><li><span>The state space of a SUT is (usually) infinite, but testing can only infinite a finite number of tests</span></li><li><span>Even if the state space is finite, it may still be too large to make exhaustive testing feasible</span></li></ul></li><li><p><strong><span>What if the tests themselves are in error?</span></strong></p></li></ul><h3><a name="classifying-tests" class="md-header-anchor"></a><span>Classifying Tests</span></h3><ul><li><p><span>we can classify tests according to several cross-cutting dimensions</span></p><ul><li><p><span>Scope: What sort of thing is the SUT?</span></p><ul><li><strong><span>Unit Tests</span></strong><span>: the SUT is a single method/class/object</span></li><li><strong><span>Integration tests:</span></strong><span> the SUT is a combination of units,  a subsystem</span></li><li><strong><span>System tests</span></strong><span>: SUT is the whole system being developed</span></li></ul></li><li><p><span>Purpose: What are we testing?</span></p><ul><li><strong><span>Acceptance Test</span></strong><span>: Customer level requirement testing. Tests whether we are building the right system</span></li><li><strong><span>Functional Test</span></strong><span>: &quot;Black box&quot; testing, specification testing</span></li><li><strong><span>Structural Testing</span></strong><span>: &quot;White Box&quot; testing,  exercising the code</span></li><li><strong><span>Regression Tests</span></strong><span>: Prevents bugs from re-entering during maintenance</span></li></ul></li><li><p><span>Size: What resources does testing need?</span></p><ul><li><strong><span>Small</span></strong><span>: run on a single process, no blocking input/output. these are fast to run and can be run automatically and frequently</span></li><li><strong><span>Medium</span></strong><span>: run on a single machine, no network input/output (only localhost); hermetic; potentially slow;</span></li><li><strong><span>Large/enormous tests</span></strong><span>: run on a network; potentially expensive</span></li></ul></li><li><p><span>How: How is testing performed</span></p><ul><li><strong><span>Automated Tests</span></strong><span>: can be run without supervision, suitable for frequent automated runs</span></li><li><strong><span>Manual tests</span></strong><span>: require a human to run and evaluate; tests may ill-defined and deterministic, like trying to &quot;break&quot; the system</span></li><li><strong><span>Customer-facing tests:</span></strong><span> require an intermediary to evaluate and the customer to use the software</span></li></ul><p><img src="./images/image-20210405200220067.png" referrerpolicy="no-referrer" alt="image-20210405200220067"></p></li></ul></li></ul><h3><a name="test-driven-development" class="md-header-anchor"></a><span>Test-Driven Development</span></h3><ul><li><p><span>Development is driven by &quot;issues&quot;:</span></p><ul><li><span>new feature requests</span></li><li><span>enhancement requests</span></li><li><span>bug reports</span></li><li><span>internal feature requests</span></li></ul></li></ul><p><img src="./images/image-20210405200758157.png" referrerpolicy="no-referrer" alt="image-20210405200758157"></p><h4><a name="process" class="md-header-anchor"></a><span>Process</span></h4><ul><li><p><span>TASK ONE: Write a test</span></p><ul><li><span>the test should fail, a bug report is not actionable until we have replicated it</span></li><li><span>A feature request is not actionable until we know how it should work</span></li><li><span>Typically, the new feature will require multiple tests</span></li></ul></li><li><p><span>TASK TWO: Fix the code until the test passes</span></p><ul><li><span>The fix should be the simplest possible that addresses the issue</span></li></ul></li><li><p><span>TASK THREE: Clean up the code</span></p><ul><li><span>At leisure, refactor code. This is not driven by issues and should have no visible behavior changes, but all tests should pass</span></li></ul></li></ul><h4><a name="strengths" class="md-header-anchor"></a><span>Strengths</span></h4><ul><li><span>Goals are concrete and actionable</span></li><li><span>We revisit requirements frequently, ensuring that we&#39;re building the right products, and that mistakes are fixed earlier</span></li><li><span>Separate refactoring stage means code hygiene is not forgotten</span></li><li><span>Robust test portfolio gives confidence in maintenance</span></li></ul><h4><a name="weaknesses" class="md-header-anchor"></a><span>Weaknesses</span></h4><ul><li><p><span>Often the same person writes the test and implements the code being tested</span></p><ul><li><span>Blind spot: programmer may overlook something</span></li><li><span>Gentleness: programmer might avoid &quot;hard&quot; tests</span></li></ul></li><li><p><span>Tests can add to maintenance problems if they are slow, flaky, or brittle</span></p></li><li><p><span>May be too overly strict</span></p></li></ul><h4><a name="variants" class="md-header-anchor"></a><span>Variants</span></h4><ul><li><p><span>Acceptance Test Driven Development (ATDD)</span></p><ul><li><span>Write &quot;system&quot; tests to express user requirements</span></li><li><span>May be slow or large</span></li><li><span>Some may not be automatable</span></li></ul></li><li><p><span>Behavior Test Driven Development (BTDD)</span></p><ul><li><span>Uses structured natural language to describe user stories with desired behaviors</span></li><li><span>Also a &quot;system&quot; test</span></li></ul></li></ul><h3><a name="evaluating-tests" class="md-header-anchor"></a><span>Evaluating Tests</span></h3><ul><li><p><span>Testing evaluates software systems. We need to ask two questions:</span></p><ul><li><span>Validation: Are we building the right product?</span></li><li><span>Verification: Are we building the product right?</span></li></ul></li><li><p><span>How do we evaluate tests?</span></p><ul><li><span>Purpose: Are tests checking the right things?</span></li><li><span>Adequacy: Are they checking things right? </span></li></ul></li></ul><h4><a name="functional-testing-adequacy" class="md-header-anchor"></a><span>Functional Testing Adequacy</span></h4><ul><li><p><span>Functional tests are proxies for a </span><strong><span>specification</span></strong></p><ul><li><p><span>A specification is a precise definition of all behavior of SUT (outputs, state mutation, other effects) in all situations (state and inputs)</span></p></li><li><p><span>A specification may be formal (mathematical), informal (natural language), or implicit (&quot;I know it when I see it&quot;)</span></p></li><li><p><span>Adequacy of a test suite is probability that an implementation passing all the tests actually fulfills the specification</span></p><ul><li><span>If a test contradicts the specification, then the suite including it has zero adequacy</span></li></ul></li></ul></li></ul><h5><a name="coverage-of-abstraction-of-sut" class="md-header-anchor"></a><strong><span>Coverage of Abstraction of SUT</span></strong></h5><ul><li><p><span>Find independently testable features (ITFs) and test these separately</span></p></li><li><p><span>Convert cartesian product of possibilities to sum</span></p></li><li><p><span>There is a danger that we could miss an interaction</span></p></li><li><p><span>Test &quot;special values&quot; such as boundary values, barely legal/barely illegal inputs</span></p></li><li><p><span>Test integer overflow</span></p></li><li><p><span>Other methods:</span></p><ul><li><span>Abstract specification as a deterministic finite state automaton (DFA), then use </span><em><span>Structural Testing</span></em><span> over the abstraction</span></li><li><span>The danger here is that the model may be less complex than the system</span></li></ul></li></ul><h4><a name="structural-testing-adequacy" class="md-header-anchor"></a><span>Structural Testing Adequacy</span></h4><ol start='' ><li><span>Adequacy can be measured as percentages of goal:</span></li></ol><ul><li><span>Statement coverage</span></li><li><span>branch coverage</span></li><li><span>path coverage</span></li></ul><ol start='2' ><li><span>Quantitative measurement is possible</span></li><li><span>We should break up a function in terms of blocks , then structure these blocks as a control flow graph and test every branch of the graph</span></li><li><span>There should be 100% block coverage, and 100% branch coverage</span></li><li><span>Sometimes a fault is only manifest on a particular path, but the number of paths can be infinite (like if there is a loop)</span></li></ol><ul><li><span>But there are ways to limit number of branches (wont be covered in this course)</span></li></ul><p><span>  </span><img src="./images/image-20210405204950212.png" referrerpolicy="no-referrer" alt="image-20210405204950212"></p><p><span>  </span><img src="./images/image-20210405205016918.png" referrerpolicy="no-referrer" alt="image-20210405205016918"></p><h5><a name="structural-test-criteria" class="md-header-anchor"></a><strong><span>Structural Test Criteria</span></strong></h5><ol start='' ><li><p><span>Path coverage (usually impossible) </span></p></li><li><p><span>Repetition-Free path coverage</span></p></li><li><p><span>Branch coverage</span></p><ol start='4' ><li><span>Block coverage = Statement coverage</span></li></ol></li></ol><ul><li><span>100% coverage may be impossible</span></li></ul><h5><a name="mutation-testing" class="md-header-anchor"></a><strong><span>Mutation Testing</span></strong></h5><ul><li><span>a form of structural testing where the code in the SUT is mutated (i.e. replacing &amp;&amp; with ||), and then we check whether the test suite fails</span></li><li><span>Mutation testing is more than coverage because it checks that the change made a difference</span></li><li><span>Difficult in practice—there are too many possible mutants, and too many mutants are equivalent or uninteresting</span></li></ul><h4><a name="regression-test-adequacy" class="md-header-anchor"></a><span>Regression Test Adequacy</span></h4><ul><li><p><span>Adequacy includes whether tests cover all uses:</span></p><ul><li><span>uses may include unspecified behavior (for example, users may a assume that a hash result if non-negative)</span></li><li><strong><span>Hyrum&#39;s law</span></strong><span>: any visible behavior may have dependents</span></li></ul></li><li><p><span>Users are responsible to add tests</span></p><ul><li><strong><span>Beyonce Rule</span></strong><span>: &quot;If you liked it, you should have out a test on it&quot;</span></li></ul></li></ul><h5><a name="not-useful-bad-tests" class="md-header-anchor"></a><strong><span>Not Useful (Bad) Tests</span></strong></h5><ul><li><p><strong><span>Flaky tests</span></strong><span> are those that fail intermittently</span></p><ul><li><span>could be due to nondeterminism (hash codes, random numbers) or timing issues</span></li></ul></li><li><p><strong><span>Brittle tests</span></strong><span> are those that fail when tests are changed</span></p><ul><li><span>reordering tests could break brittle tests</span></li></ul></li><li><p><strong><span>Mystery tests</span></strong><span> aren&#39;t clear why they fail</span></p><ul><li><span>how can the dev know what to fix?</span></li></ul></li></ul><h5><a name="test-smells" class="md-header-anchor"></a><strong><span>Test Smells</span></strong></h5><p><span>Test smells name problem aspects of tests. Smelly tests are more likely to be bad.</span></p><ul><li><p><strong><span>Resource optimism</span></strong><span>: assumes that certain external resources (such as a file to read/write to) can be used.</span></p><ul><li><span>if assumption proves false, test becomes flaky</span></li></ul></li><li><p><strong><span>Conditional Test logic</span></strong><span>: test code has conditionals/loops</span></p><ul><li><span>test is hard to understand, and if it fails, we won&#39;t know what went wrong</span></li></ul></li><li><p><strong><span>Mystery Guest</span></strong><span>: uses information unknown to the test; assumes context, which can change</span></p><ul><li><span>Test will misbehave if reordered, therefore making it brittle</span></li></ul></li></ul><h5><a name="what-makes-tests-good" class="md-header-anchor"></a><strong><span>What Makes Tests Good?</span></strong></h5><ul><li><span>Tests should be </span><strong><span>hermetic</span></strong><span> (on a single machine)</span></li><li><span>Tests should be clear</span></li><li><span>Tests should be scoped as </span><strong><span>small</span></strong><span> as possible</span></li><li><span>Test should make calls against </span><strong><span>public</span></strong><span> APIs</span></li></ul><h3><a name="testing-systems" class="md-header-anchor"></a><span>Testing Systems</span></h3><ul><li><p><span>Large systems are hard to test</span></p><ul><li><span>they could have a database component where the contents need to reflect/simulate the real world, or data could be confidential</span></li><li><span>it may have network connections that could be slow/flaky/disrupted. The resources may also change</span></li><li><span>the environment may affect how the app behaves</span></li><li><span>human actors can be unpredictable</span></li></ul></li><li><p><span>Two Ways to Handle Difficulties</span></p><ul><li><p><strong><span>Pay the cost, do the test</span></strong></p><ul><li><span>A large test can reveal costs that smaller tests can&#39;t</span></li></ul></li><li><p><strong><span>Automate with tools</span></strong></p><ul><li><span>Use &quot;test doubles&quot; such as stubs, mocks/spies, and fakes</span></li><li><span>Do random testing (&quot;fuzzing&quot;) against a reference implementation</span></li></ul></li></ul></li></ul><h4><a name="test-stub" class="md-header-anchor"></a><span>Test Stub</span></h4><ul><li><p><span>Supply an object with the same interface / has same methods and default result values</span></p></li><li><p><span>The stub allows the test to run. If it blindly uses the stub, it can proceed; if it expects something from the object, the test will likely fail</span></p></li><li><p><span>But it does not:</span></p><ul><li><span>Remember how the stub was used</span></li><li><span>Tell the stub what to do when it is called</span></li></ul></li></ul><h4><a name="test-spies" class="md-header-anchor"></a><span>Test Spies</span></h4><ul><li><span>remembers how the object was called, then the test harness can check what happened (</span><code>.toBeCalledWith</code><span>)</span></li><li><span>A spy can be useful on the &quot;real object&quot;, showing, for example, what was sent on a network, how many times something was logged, or what was inserted into a database</span></li><li><span>Often used with a mock when it involves returning specific values</span></li></ul><h4><a name="test-mocks" class="md-header-anchor"></a><span>Test Mocks</span></h4><ul><li><span>has scripted results, meaning that if a particular method is called, it will return a particular value</span></li><li><span>A complex mock may have many scripts (i.e. multiple methods, and different results for subsequent calls)</span></li><li><span>Useful mocking assumes we know how the mock object will be used</span></li><li><span>If a &quot;mock&quot; has real logic, it becomes a &quot;fake&quot;</span></li></ul><h4><a name="test-fake" class="md-header-anchor"></a><span>Test Fake</span></h4><ul><li><p><span>A fake has an implementation of the object being replaced</span></p><ul><li><span>a low-fidelity fake implements things partially, just enough to work for the test</span></li><li><span>a high-fidelity fake implements most aspects, usually all functional aspects but less efficient and scalable than the real thing</span></li></ul></li><li><p><span>the purpose of a fake is to avoid processes/network/cost</span></p><ul><li><span>makes the test cheap and deterministic</span></li></ul></li></ul><h4><a name="random-input" class="md-header-anchor"></a><span>Random Input</span></h4><ul><li><p><span>To replace a user, we can program a bot</span></p><ul><li><span>randomly uses buttons, mouse, types arbitrary text</span></li></ul></li><li><p><span>Smarter &quot;fuzzing&quot; can capture real actions or make targeted mutations</span></p></li></ul><h4><a name="weaknesses-of-test-doubles" class="md-header-anchor"></a><span>Weaknesses of Test Doubles</span></h4><ul><li><p><span>Mock/Fake might not behave correctly</span></p><ul><li><span>test harness might assume wrong behavior - this can be solved with a higher fidelity fake</span></li></ul></li><li><p><span>The SUT may use a different algorithm</span></p><ul><li><span>the spies expect a particular usage of double&#39;</span></li><li><span>The test is brittle because it depends too much on internal behavior of SUT</span></li></ul></li></ul><h2><a name="module-6-user-centered-design" class="md-header-anchor"></a><span>Module 6: User-Centered Design</span></h2><h3><a name="determining-requirements" class="md-header-anchor"></a><span>Determining Requirements</span></h3><p><span>A three-step process:</span></p><ol start='' ><li><strong><span>Elicitation</span></strong><span>: Discover requirements from prospective customers</span></li><li><strong><span>Analysis</span></strong><span>: Understand and prioritize requirements elicited</span></li><li><strong><span>Validation</span></strong><span>: bring back requirements to customer for confirmation</span></li></ol><h3><a name="usability" class="md-header-anchor"></a><span>Usability</span></h3><ul><li><p><strong><span>Usability</span></strong><span>: how a software impacts a human with particular goal</span></p><ul><li><p><span>Five aspects of usability:</span></p><ul><li><strong><span>Learnability</span></strong><span>: How easy is it to learn to use the artifact to accomplish a goal</span></li><li><strong><span>Effectiveness</span></strong><span>:  How often does the use lead to the completion of the goal:</span></li><li><strong><span>Productivity</span></strong><span>: How large of multiplier of human effort does this artifact give? Does it make things easier or harder?</span></li><li><strong><span>Retainability</span></strong><span>: How long is the ability to use the artifact retained between users?</span></li><li><strong><span>Satisfiability</span></strong><span>: How pleasant is the artifact to use?</span></li></ul></li></ul></li></ul><h3><a name="user-centered-design" class="md-header-anchor"></a><span>User-Centered Design</span></h3><ul><li><p><span>A system is evaluated from the user viewpoint</span></p></li><li><p><span>A prototype of the product should be made and evaluated before development fully starts</span></p><ul><li><p><strong><span>Paper prototypes:</span></strong><span> hand drawn user interfaces where developers animate the paper to behave like an interface, and users say what they would do</span></p></li><li><p><strong><span>Wizard of oz prototype:</span></strong><span> software looks correct, but is barely functional—uses scripted interaction only</span></p></li><li><p><strong><span>Working prototype</span></strong><span>: fully realized user interface with limited functionality. Particularly good to get out feature request with a quick-and-dirty implementation, which will immediately allow devs to get feedback</span></p><ul><li><span>In TDD: feature request is realized in a test</span></li><li><span>In UCD: feature request is realized in a user interface</span></li></ul></li></ul></li></ul><h3><a name="forms-of-user-evaluation" class="md-header-anchor"></a><span>Forms of User Evaluation</span></h3><ul><li><p><strong><span>Empirical evaluation</span></strong><span>: &quot;how many tasks accomplished in n minutes&quot;</span></p></li><li><p><strong><span>Qualitative evaluation</span></strong><span>: observers find patterns in interaction, and users give feedback after use</span></p></li><li><p><strong><span>&quot;Dogfooding&quot;</span></strong><span>: developers use product as soon as feasible, otherwise known as internal evaluation</span></p></li><li><p><strong><span>Heuristic evaluation</span></strong><span>: evaluate against best practices, involves a small team of evaluators to evaluate an interface based on recognized usability principles</span></p><ul><li><span>Heuristics = rules of thumb</span></li><li><span>usually cheaper than rounding up real users</span></li></ul></li></ul><h4><a name="heuristics" class="md-header-anchor"></a><span>Heuristics</span></h4><ul><li><p><span>Does the interface:</span></p><ul><li><p><em><span>H1: Make System Status Visible</span></em></p><ul><li><span>remind the user of where they are, what they&#39;ve inputted?</span></li><li><span>say what it is currently doing?</span></li><li><span>give the results of its processing?</span></li><li><span>give feedback in response to user action? </span></li></ul></li><li><p><em><span>H2: Match Between System and Real World</span></em></p><ul><li><span>speak the users&#39; language?</span></li><li><span>follow real world conventions?</span></li><li><span>avoid internal jargon? (like error messages the user would not understand)</span></li><li><span>hide options that can&#39;t be interacted with?</span></li></ul></li><li><p><em><span>H3:  Ensure User Control and Freedom</span></em></p><ul><li><span>provide &quot;exits&quot; for mistaken choices, such as undo, redo, and cancel?</span></li><li><span>avoid forcing users down fixed paths?</span></li></ul></li><li><p><em><span>H4: Provide Consistency and Standards</span></em></p><ul><li><span>use the same words/situations/actions in all similar situations?</span></li><li><span>have text that is consistent with figures? </span></li><li><span>persist similarities between similar things and persist differences between different things?</span></li></ul></li><li><p><em><span>H5: Prevent Errors</span></em></p><ul><li><span>design inputs and other user actions to anticipate/avoid error?</span></li></ul></li><li><p><em><span>H6: Rely on Recognition Rather Than Recall</span></em></p><ul><li><span>make objects/actions/options easily retrievable?</span></li><li><span>rely on picking from a set of options rather than typing something out from memory?</span></li></ul></li><li><p><em><span>H7: Provide Flexibility and Efficiency of Use</span></em></p><ul><li><span>allow accelerators for experts, such as gestures and keyboard shortcuts?</span></li><li><span>allow users to tailor frequent actions, such as macros?</span></li></ul></li><li><p><em><span>H8: Maintain aesthetic and minimalist design</span></em></p><ul><li><span>remove irrelevant or rarely needed info</span></li></ul></li><li><p><em><span>H9: Help users recognize, diagnose, and recover from errors</span></em></p><ul><li><span>use standards to convey errors?</span></li><li><span>display errors in languages that users understand?</span></li><li><span>precisely indicate the problem?</span></li><li><span>constructively suggest a solution?</span></li></ul></li><li><p><em><span>H10: Provide Help and Documentation</span></em></p><ul><li><span>provide help that is easy to search?</span></li><li><span>provide help that is focused on the user&#39;s task?</span></li><li><span>provide concrete steps to carry out?</span></li><li><span>provide help that is always available?</span></li></ul></li></ul><h3><a name="react" class="md-header-anchor"></a><span>React</span></h3><p><strong><span>[I am skipping this part because I feel as though I know it, and it&#39;s unlikely to appear on the test]</span></strong></p></li></ul><h2><a name="module-7-debugginggit" class="md-header-anchor"></a><span>Module 7: Debugging/Git</span></h2><ul><li><p><span>When a bug is reported, log it in a tracking system so that you don&#39;t lose track of it</span></p><ul><li><span>connect to symptoms, tests, causes and fixes</span></li><li><span>make sure the tracking system is searchable to ensure that there&#39;s no duplicates</span></li></ul></li><li><p><span>After logging:</span></p><ul><li><p><span>Assign a priority—how crucial is it to fix this?</span></p></li><li><p><span>Assign a responsible party—who will work on it?</span></p></li><li><p><span>Try to find a Short Self-Contained Correct Example</span></p><ul><li><span>S: remove everything that is not necessary</span></li><li><span>S-C: add everything needed to demonstrate the problem</span></li><li><span>C: the example is valid</span></li><li><span>E: a concrete example of bug behavior</span></li></ul></li></ul></li><li><p><span>Assignee tasks:</span></p><ul><li><p><span>the assignee needs to investigate the report to see if it is actionable, or else it is:</span></p><ul><li><span>Invalid: not relevant</span></li><li><span>Duplicate: already reported</span></li><li><span>Fixed: in a recent version</span></li><li><span>Can&#39;t reproduce: back to reporter for more data</span></li></ul></li><li><p><span>Otherwise, if bug is reproducible:</span></p><ul><li><span>Complete SSCCE if not already down</span></li><li><span>Convert SSCCE into a failing test</span></li></ul></li></ul></li><li><p><span>Debugging has two phases:</span></p><ul><li><p><strong><span>Diagnosis</span></strong><span>:</span></p><ul><li><span>Determine the fault causing the problem observed</span></li></ul></li><li><p><strong><span>Correction</span></strong><span>:</span></p><ul><li><span>Correct the fault so the test passes and none fail</span></li></ul></li></ul></li><li><p><span>Anti-Pattern: Mutation Debugging</span></p><ul><li><span>Make sure to diagnose a problem—don&#39;t just make changes and re-run tests until they all pass</span></li></ul></li><li><p><strong><span>Synchronic</span></strong><span> </span><strong><span>Fault Location:</span></strong><span> the fault must lie between program start and the failure point. use tools such as the debugger and console logs to find where it&#39;s breaking. A form of binary search.</span></p></li><li><p><strong><span>Diachronic Fault Location</span></strong><span>: If the fault was not present in an earlier version, we can find when it was introduced by searching through the commits to see where things start breaking</span></p><ul><li><span>use </span><code>git bisect</code><span> to determine which commit fails an automated test</span></li></ul></li><li><p><strong><span>Hypothesis Testing</span></strong><span>:</span></p><ul><li><span>Guessing diagnosis based on experience (pattern matching), community (colleagues, stackoverflow), or information from a faulty run</span></li><li><span>Verbalize the hypothesis</span></li><li><span>Test the hypothesis</span></li></ul></li><li><p><span>Debugging tools:</span></p><ul><li><span>print statements</span></li><li><span>special purpose code changes</span></li><li><span>breakpoints</span></li><li><span>stepping</span></li><li><span>watchpoints</span></li></ul></li><li><p><span>Assist future debugging</span></p><ul><li><span>check invariants frequently during testing</span></li><li><span>&quot;fail fast&quot; as soon as a problem is noticed</span></li></ul></li></ul><h3><a name="git" class="md-header-anchor"></a><span>Git </span></h3><p><span>[I am not going to outline this, we should both know it]</span></p><h2><a name="module-8-code-improvement" class="md-header-anchor"></a><span>Module 8: Code Improvement</span></h2><h3><a name="static-program-analysis" class="md-header-anchor"></a><span>Static Program Analysis</span></h3><ul><li><p><span>Program analysis that is done without running the program</span></p></li><li><p><span>Alternative to testing</span></p></li><li><p><span>Testing can only test finite, concrete cases --&gt; We want to test unbounded, symbolic cases</span></p></li><li><p><span>Solution is </span><strong><span>Program Verification</span></strong><span>: Checks code against specification</span></p><ul><li><span>Caveats: Can only show absence of bugs, not presence. A verification failing doesn&#39;t mean there&#39;s a bug.</span></li><li><span>Sometimes we cannot show either</span></li><li><span>Time and $$$ is an issue</span></li></ul></li><li><p><strong><span>Specification</span></strong><span>: Precisely defines exactly the behavior a system should have</span></p><ul><li><span>A &quot;full formal specification&quot; is essentially a program</span></li><li><span>Must be modular --&gt; Without it, it&#39;ll be incomprehensible and unprovable</span></li><li><span>Must be maintained with code</span></li></ul></li><li><p><span>We want to find something between </span><strong><span>Verification</span></strong><span> and </span><strong><span>Testing</span></strong><span>: Bug finding!</span></p><ul><li><span>Partial verification: will find only some bugs</span></li><li><span>Optional type systems</span></li><li><span>Linters</span></li><li><span>Quadrant of bug detection: False positive, true positive, true negative, false negative (these are exactly what you would expect) --&gt; reducing false negatives often increases false positives, and vice-versa</span></li></ul></li><li><p><span>Criteria for good automated program analyis</span></p><ul><li><span>Efficient and easy (shouldn&#39;t require whole program analysis)</span></li><li><span>Rarely spurious (no more than 10% effectively false positive: i.e. a false positive that will cause a developer to act on it)</span></li><li><span>Actionable (should point out easy-to-fix issues)</span></li><li><span>Effective (problems are actually important)</span></li></ul></li></ul><h3><a name="code-smells-and-refactoring" class="md-header-anchor"></a><span>Code Smells and Refactoring</span></h3><ul><li><p><span>Code smells: aka anti-patterns</span></p><ul><li><span>Common and known: each smell has </span><a href='https://refactoring.guru/refactoring/smells'><span>a name and a recommended fix</span></a><span> </span></li><li><span>Data class: class has public properties and few if any methods</span></li><li><span>Duplicated code (...self explanatory)</span></li><li><span>Too many parameters: A method has too many params</span></li></ul></li><li><p><span>Refactoring: Code is reorganized</span></p><ul><li><span>Code&#39;s behavior is not changed: &quot;topology preserving transformation&quot;</span></li><li><span>Reversible </span></li><li><span>Remove smells, improve code flexibility</span></li><li><span>Can break code if done wrong: regression tests can help prevent this</span></li></ul></li><li><p><span>Technical debt: sum of internal problems in your project code base</span></p><ul><li><span>NOT user-visible failures: code smells, missing tests, missing docs, out-of-date dependencies, etc</span></li><li><span>Creates &quot;interest&quot; that is paid during maintenance </span></li><li><span>Good reasons to go into tech debt: Time-sensative stuff --&gt; prototyping, fixing crit failure, getting product out the door</span></li><li><span>Set aside time for tech debt</span></li></ul></li></ul><h2><a name="module-9-distributed-systems-and-security" class="md-header-anchor"></a><span>Module 9: Distributed systems and security</span></h2><h3><a name="what-is-a-distributed-system" class="md-header-anchor"></a><span>What is a distributed system?</span></h3><ul><li><p><span>Can do two things:</span></p><ul><li><span>Many servers talking through a network, and client isn&#39;t aware</span></li><li><span>Many servers talking through a network, and client IS aware</span></li></ul></li><li><p><span>Goals of distributed system:</span></p><ul><li><span>Scalability</span></li><li><span>Performance</span></li><li><span>Latency</span></li><li><span>Availability: measured as uptime / (uptime + downtime)</span></li><li><span>Fault Tolerance --&gt; How do we handle failing disks, power outages, etc?</span></li></ul></li><li><p><span>Challenges:</span></p><ul><li><span>More machines, more chances of failure</span></li><li><span>Number of nodes + distance between them --&gt; lowers performance and increases latency</span></li></ul></li><li><p><span>8 fallacies of distributed computing (things that are not true): 1-7 are due to physical properties of networks</span></p><ol start='' ><li><span>The network is reliable</span></li><li><span>Latency is zero</span></li><li><span>Bandwith is infinite</span></li><li><span>The network is secure </span></li><li><span>Typology doesn&#39;t change</span></li><li><span>Transport cost is zero</span></li><li><span>The network is homogenous</span></li><li><span>There is one administrator</span></li></ol></li><li><p><span>Should we make our software distributed?</span></p><ul><li><span>Do we need to store more data than one computer can store?</span></li><li><span>Do we need to process requests faster than one computer can?</span></li><li><span>Are we willing and able to take on additional complications?</span></li></ul></li></ul><h3><a name="strategies-for-building-distributed-systems" class="md-header-anchor"></a><span>Strategies for building distributed systems</span></h3><ul><li><p><span>Recurring solutions:</span></p><ul><li><span>Partitioning</span>
+<img src="./images/Partitioning.png" referrerpolicy="no-referrer" alt="Partitioning"></li><li><span>Replication</span>
+<img src="./images/Replication.png" referrerpolicy="no-referrer" alt="Replication"></li><li><span>Particioning and Replication</span>
+<img src="./images/PartitionAndReplicate.png" referrerpolicy="no-referrer" alt="PartitionAndReplicate"></li></ul></li><li><p><span>Major issue with replication: consistency. How do we propogate updates across servers? </span></p><ul><li><p><span>Server told to set value to &quot;5&quot; must tell all other servers to also set value to &quot;5.&quot; Only when this is successful will the server update the value, thus ensuring sequential consistency...problem, this is not very fault tolerant.</span></p></li><li><p><span>Fault tolerant solution: If the replica doesn&#39;t update, assume that it&#39;s offline, and update anyway...problem, what if it&#39;s the </span><em><span>network</span></em><span> that isn&#39;t working, and the replica isn&#39;t actually offline? Will break sequential consistency if a client can interact with the replica.</span></p></li><li><p><span>Basically: We have a problem because two machines in a distributed system do not have a </span><em><span>shared fate.</span></em><span> This is called the &quot;split brain&quot; issue.</span></p></li><li><p><strong><span>CAP Theorem:</span></strong><span> You must pick two of three.</span></p><ul><li><span>Consistency: All nodes see same data at same time</span></li><li><span>Availability: Individual node failures do not prevent survivors from operating</span></li><li><span>Partition tolerance: The network still works as expected if some nodes can&#39;t communicate</span></li><li><span>Realistically, we want to decide between Consistency and Availability, depending on which one is more important</span></li></ul></li><li><p><span>Byzantine failures: A replica sends back an &quot;OK, I updated!&quot; message when it didn&#39;t actually update</span></p></li></ul></li></ul><h3><a name="software-engineering-and-security-threats" class="md-header-anchor"></a><span>Software Engineering and Security Threats</span></h3><ul><li><p><span>CIA Properties</span></p><ul><li><span>Confidentiality: Is info disclosed to unauthorized individuals?</span></li><li><span>Integrity: Is code or data tampered with?</span></li><li><span>Availability: Is the system accessible and usable?</span></li></ul></li><li><p><span>Threat: Potential event that could compromise security property</span></p></li><li><p><span>Attack: Realization of a threat</span></p></li><li><p><span>Vulnerability: Characteristic or flaw that, if exploited, could result in a compromise</span></p></li><li><p><span>Threat models:</span></p><ul><li><span>What are we defending?</span></li><li><span>What kinds of malicious actors exist and what might they try?</span></li><li><span>Who do we trust? --&gt; Gotta trust SOMEONE (not remote users)</span></li></ul></li><li><p><span>Things we can do to protect ourselves:</span></p><ul><li><span>Important security code (authentication, for example) should go in the backend</span></li><li><span>Frontend shouldn&#39;t trust blindly that answer came from backend, and vice-versa (man-in-the-middle attacks) --&gt; We can avoid this problem with SSL/encryption.</span></li></ul></li><li><p><span>Some more complicated issues:</span></p><ul><li><span>Problem with SSL: Certificate Authorities (CA)  validate all websites (i.e. they will tell you that you are genuinely talking to Amazon) which create a &quot;chain of trust&quot; --&gt; VERY BAD NEWS if CAs are compromised </span></li><li><span>Another nasty attack vector: Dependencies/third-party vendors. Attacker can put malware in dependencies (ESLint in 2018)</span></li><li><span>Security rabbithole...</span></li></ul></li></ul><h3><a name="engineering-secure-software" class="md-header-anchor"></a><span>Engineering Secure Software</span></h3><ul><li><p><a href='https://owasp.org/www-project-top-ten'><span>OWASP Top Security Risks</span></a></p></li><li><p><span>Code injection</span></p><ul><li><p><span>Attacker is able to insert code as unsanitized data that could run...</span></p><ul><li><span>In our database (SQL injection)</span></li><li><span>In our client (XSS) </span></li><li><span>Within the server (malformed requests that get processed --&gt; See 2017 Equifax security breach)</span></li></ul></li><li><p><span>Fix: </span></p><ul><li><span>Always sanitize our input. </span></li><li><span>Use tools like LGTM to detect vulnerable data flows</span></li><li><span>Use middleware that side-steps the problem (e.g. return data as JSON, data gets put in React component)</span></li></ul></li></ul></li><li><p><span>Broken authentication + access control</span></p><ul><li><p><span>Fix:</span></p><ul><li><span>Implement multi-factor auth</span></li><li><span>Implement weak-password checks</span></li><li><span>Apply per-record access control</span></li><li><span>Harden password reset pathways</span></li><li><span>Rely on a trusted component instead of building auth yourself (auth0)</span></li><li><span>DO NOT hard-code credentials EVER (e.g. DO NOT PUT API KEYS IN YOUR CODE) --&gt; Automated checkers for this such as GitGuardian</span></li></ul></li></ul></li><li><p><span>Weakly protected sensitive data</span></p><ul><li><p><span>Fix</span></p><ul><li><span>Classify data by sensitivity and give sensitive data extra protection</span></li><li><span>Encrypt sensitive data - in transit/at rest</span></li><li><span>Make plan for data controls, stick to it</span></li><li><span>Can we avoid storing sensitive data all together? I.e. do we need to store people&#39;s CC numbers? Can we just use Square or Paypal?</span></li></ul></li></ul></li><li><p><span>Using components with known vulnerabilities</span></p><ul><li><span>PAY ATTENTION TO DEPENDABOT UPDATES</span></li><li><span>Problem: updating dependencies sometimes takes a lot of time/work, might not be necessary if the vulnerability is in a part of the dependency that isn&#39;t actually used in your code (i.e. a function that you never touch). Still, should always audit and make sure.</span></li></ul></li></ul><h2><a name="module-10-continuous-development" class="md-header-anchor"></a><span>Module 10: Continuous Development</span></h2><h3><a name="software-processes-and-continuous-development" class="md-header-anchor"></a><span>Software processes and continuous development</span></h3><ul><li><p><span>Software proess: A structured set of activities required to develop a software product, goal of minimizing risks</span></p><ul><li><span>Specification</span></li><li><span>Design/implementation</span></li><li><span>Validation</span></li><li><span>Evolution</span></li></ul></li><li><p><span>Verification and validation: quality assurance</span></p><ul><li><span>We want to create feedback loops to detect more bugs sooner</span></li><li><span>Make sure that our software does everything it should do</span></li></ul></li><li><p><span>We want to make sure that our software can evolve and change</span></p><ul><li><span>Note: Most software built on top of large/old codebases...99% of proprietary software uses some open source software</span></li></ul></li><li><p><span>Software Processes</span></p><ul><li><p><span>Code-and-fix: really bad, really common. Build software and modify until customer satisfied.</span></p><ul><li><span>No means of assessing progress, difficult to coordinate multiple programmers</span></li><li><span>Useful for &quot;hacking&quot; together small/individual projects</span>
+<img src="./images/BandF.png" referrerpolicy="no-referrer" alt="BandF"></li></ul></li><li><p><span>Waterfall model: Breaks software dev process into those four phases and explicitly builds in QA</span></p><ul><li><span>Experience applying steps in past projects can be used to estimate duration of &quot;similar steps&quot;</span></li><li><span>Produces software artifacts that can be re-used</span></li><li><span>Difficult accomodating change after process is underway: Must complete one phase before moving on to next</span>
+<img src="./images/Waterfall.png" referrerpolicy="no-referrer" alt="Waterfall"></li></ul></li><li><p><span>Agile model: Iterative model, where each iteration is several weeks long and results in several features being built</span></p><ul><li><span>&quot;Sprint model&quot;: Each sprint is a cycle of the model</span></li><li><span>Know that requirements always evolve</span></li><li><span>Can get useful feedback from partial apps</span>
+<img src="./images/Agile.png" referrerpolicy="no-referrer" alt="Agile"></li></ul></li></ul></li><li><p><span>Common goal: &quot;Shift left&quot; --&gt; Find defects earlier in the software dev process, will cost less to fix</span></p></li><li><p><span>Continuous development: Like agile, but with fast feedback loop. Makes finding bugs faster, &quot;shifts left&quot;</span></p><ul><li><span>Formal mechanism for deploying and validating new code (test/staging/prod)</span></li><li><span>Unblocks developers and increases velocity --&gt; Less downtime for dev</span>
+<img src="./images/ContinuousDev.png" referrerpolicy="no-referrer" alt="ContinuousDev"></li></ul></li></ul><h3><a name="continuous-integration" class="md-header-anchor"></a><span>Continuous integration </span></h3><ul><li><p><span>Testing the right things at the right time: giving developers feedback on their changes</span></p></li><li><p><span>Continuously assemble and test our entire codebase. Automate build/test chunk of the feedback loop</span></p></li><li><p><span>Build systems: Automatically compile code and generate executables</span></p><ul><li><p><span>Make, mave, gradle, etc.</span></p></li><li><p><span>Makes builds repeatable, reproducible, and standard</span></p></li><li><p><span>Not just compilation. In parallel (as much as possible) we&#39;d like to...</span></p><ul><li><span>Fetch and link dependencies</span></li><li><span>Provision and teardown for integration testing</span></li><li><span>Run tests</span></li><li><span>Generate release archive</span></li></ul></li></ul></li><li><p><span>Things to consider:</span></p><ul><li><span>Pre-commit tests: Should we run small subset of tests before integrating changes?</span></li><li><span>Do we test new changes one-by-one if multiple integrations are coming in? How do we manage a change queue?</span></li><li><span>Do we run every test on every integration?</span></li><li><span>Do we use mocks?</span></li></ul></li><li><p><span>Small scale CI: Run everything on everything</span>
+<img src="./images/SmallCI.png" referrerpolicy="no-referrer" alt="SmallCI"></p></li><li><p><span>Medium scale: Run different tests on different branches</span>
+<img src="./images/MedCI.png" referrerpolicy="no-referrer" alt="MedCI"></p></li><li><p><span>Large scale CI (Google):</span></p><ul><li><span>Pre-submit optimization: run fast tests for each individual change</span></li><li><span>Run all affected tests on a batch of commits; &quot;build cop&quot; monitors and acts immediately to roll-back or fix</span></li></ul></li></ul><h3><a name="deployment-infranstructure" class="md-header-anchor"></a><span>Deployment Infranstructure</span></h3><ul><li><p><span>Back in the old days --&gt; Manual deployment to private or shared machines. Copy files over, reset server.</span></p><ul><li><span>Does not scale at all...not to number of machines, number of programs, size of programs, or frequency of deployments</span></li></ul></li><li><p><span>Make it slightly better...automate the file copying, monitor for anomalies</span></p><ul><li><span>Doesn&#39;t solve the problem of resource consumption: if more people use it, it needs more resources. But if no one usees it, don&#39;t need the resources. We don&#39;t want to have just one low-resource program running on the machine, so we deploy multiple programs (multitenacy). Problem...if one suddenly becomes popular, it can starve other programs out. </span></li></ul></li><li><p><span>Modern solutions:</span></p><ul><li><p><span>Things to consider:</span></p><ul><li><span>Centralization vs customization --&gt; if we want really specific config, Heroku might not be the best choice</span></li><li><span>How do we manage state?</span></li><li><span>What is our expected scale?</span></li><li><span>How much management do we want to do?</span></li></ul></li><li><p><span>Better multi-tenacy: virtualization! Each app gets its own VM</span></p><ul><li><span>Problem: each VM runs its own OS, not efficient use of resources</span></li><li><span>Greatest degree of control, greatest cost, greatest latency</span></li></ul></li><li><p><span>Containerization: Docker. Lightweight containers, run on host machine OS, so less resources</span></p><ul><li><span>Better resource utilization than VMs</span></li></ul></li><li><p><span>Kubernetes: Will create Docker containers for different programs, will scale up or down if needed</span></p><ul><li><span>Gives you multi-tenacy and load-balancing, yay!</span></li></ul></li><li><p><span>You might not have an infra person...can we pay a service to make it work for you?</span></p><ul><li><span>Yep! Heroku, Netlify, etc. Pay per second that our code is up.</span></li><li><span>Put a simple config file in our Git repo and Heroku handles load balancer in Amazon EC2 VM and bills us for how long we have our server up</span></li><li><span>Similarly, Netlify distributes our frontend through their CDN, handles fault-tolerance for us, bills us</span></li><li><span>Minimal degree of control, YMMV with cost</span></li></ul></li><li><p><span>Functions-as-a-services: We just have a few functions called infrequently, don&#39;t wanna pay for a VM/service to have them up constantly</span></p><ul><li><span>Can pay serverless provider to run a function when request, bill per millesecond when functions run</span></li><li><span>AWS Lambda, Google Cloud Functions, etc.</span></li><li><span>Can&#39;t store data</span></li><li><span>Minimal degree of control, least latency, YMMV with cost</span></li></ul></li></ul></li></ul><h3><a name="continuous-delivery" class="md-header-anchor"></a><span>Continuous Delivery</span></h3><ul><li><p><span>How do we fix defects in the prod environment (or just before they make it in?)</span></p></li><li><p><span>Basic idea: &quot;If stuff blows up, we want it to affect the least amount of people&quot;</span></p></li><li><p><span>Release frequently, in small batches</span></p></li><li><p><span>Easier to detect specific impact and isolate quickly, rollback if buggy</span></p></li><li><p><span>If release can go out quickly/automatically, we can release multiple times a day!</span></p></li><li><p><span>Evaluate business impacts of new features by A/B testing:</span>
+<img src="./images/ABTest.png" referrerpolicy="no-referrer" alt="ABTest"></p></li><li><p><span>Key aspect: Staging environments</span></p><ul><li><span>Deploy to a complete production-like environment with no users</span></li><li><span>Can direct focus group to staging environment --&gt; Either our own engineers or alpha/beta testers</span></li><li><span>Lower risk than prod</span></li><li><span>Go from dev env --&gt; staging env --&gt; prod env, with Q/A at each phase</span></li></ul></li><li><p><span>DevOps</span></p><ul><li><span>Someone needs to monitor software post-deploy</span></li><li><span>Whose job is it?</span></li><li><span>Key tenant of DevOps: The people who make the changes own them from cradle to grave, regardless of platform (desktop, mobile, etc)</span>
+<img src="./images/DevOps.png" referrerpolicy="no-referrer" alt="DevOps"></li></ul></li><li><p><span>Note: Does not mean that all changes will be released as soon as they&#39;re made --&gt; need to go through release pipeline first</span></p></li><li><p><span>Large organizations: Release engineer decides when something is &quot;ready to go,&quot; oversees deployment</span></p></li><li><p><span>Monitoring: Track production (and staging) metrics</span></p><ul><li><span>Hardware (temperatures, fan speeds...)</span></li><li><span>OS (memory usage, CPU load...)</span></li><li><span>Middleware (Memory, thread/db connection pools...)</span></li><li><span>Applications (Business transactions, conversion rates...)</span></li></ul></li></ul><h2><a name="module-11-engineering-equitable-software" class="md-header-anchor"></a><span>Module 11: Engineering Equitable Software</span></h2><h3><a name="engineering-equitable-software" class="md-header-anchor"></a><span>Engineering Equitable Software</span></h3><ul><li><p><span>Power imbalance between software engineers and users</span></p></li><li><p><span>More complicated than &quot;don&#39;t be evil&quot; </span></p></li><li><p><span>Examples:</span></p><ul><li><p><span>Algorithmic Bias: COMPAS Sentencing Tool --&gt; Recidivism rate prediction</span></p><ul><li><span>White defendants had a higher false negative rate (labeled lower risk, did re-offend) and Black defendants had a higher false positive rate</span></li><li><span>White defendants were given lower recidivism scores in general</span></li><li><span>Algorithmic bias often due to hidden correlations</span></li></ul></li><li><p><span>Algorithmic Bias: Price Discrimination (the thing we were talking about the other day -- location based correlating to socioeconomic status)</span></p></li><li><p><span>Climate impact: Machine Learning model training and development can have HUGE levels of CO2 emission</span></p></li><li><p><span>Incusivity and Accessibility: Domonio&#39;s Pizza </span></p><ul><li><span>Sued for not being accessible to the blind, argued that the ADA applied to physical locations only</span></li><li><span>Supreme Court said &quot;yes it does&quot;</span></li></ul></li><li><p><span>Evading regulation: Volkswagen</span></p><ul><li><span>Volkswagen had customized software that reduced emissions when taking emissions test</span></li><li><span>Misled both regulators and consumers</span></li></ul></li><li><p><span>Can be easy to make unequitable software -- but we should do the work</span></p></li></ul></li></ul><h3><a name="ethics-in-software-engineering" class="md-header-anchor"></a><span>Ethics in Software Engineering</span></h3><ul><li><p><span>Professional ethics: Standards established for divinity, law, medicine, and engineering, among others. These professions are required to go through specific ethical training</span></p></li><li><p><span>Case study: Citi building engineering failure</span></p><ul><li><span>Failure discovered that could cause the building to fall over if a strong enough wind struck it from a particular direction</span></li><li><span>Was fixed quickly, but in secret, without informing the public</span></li><li><span>Was this the right thing to do?</span></li></ul></li><li><p><span>Case study: Therac-25</span></p><ul><li><span>Bug in radiation machine failure caused at least 6 deaths and unknown injuries/disease</span></li><li><span>Bug was undiscovered for 2 years</span></li><li><span>Weak accountability in manufacturer&#39;s organization --&gt; no testing plan, no code review, no safety checks</span></li><li><span>Resulted in stronger checks in safety critical (ESPECIALLY medical) software</span></li></ul></li><li><p><span>Code of Ethics: Not legally held to a code of ethics</span></p><ul><li><span>ACM has established a code of ethics for Software Engineers</span></li><li><span>However, study found that simply exposing developers to ACM Code did not result in more ethical decision making </span></li></ul></li><li><p><span>Ethical decisions are hard decisions</span></p><ul><li><span>Example: Interactive AI systems can be useful, but can amplify hate. Do we continue to make them?</span></li></ul></li><li><p><span>Accessibility should </span><em><span>not</span></em><span> be a hard decision</span></p><ul><li><span>i.e. Domino&#39;s should have absolutely made their software screenreader accessible</span></li><li><span>Not that difficult, saves you a PR nightmare...and blind people buy pizza</span></li></ul></li><li><p><span>Value Sensitive Design: Consider how software impacts users&#39; universal values</span></p><ul><li><span>Human rights</span></li><li><span>Accessibility</span></li><li><span>Justice</span></li><li><span>Privacy</span></li><li><span>Human welfare</span></li></ul></li><li><p><span>Unpacking &quot;publlic interest&quot;</span></p><ul><li><span>What are the implications of failures?</span></li><li><span>Who will use the software, and how will they differ from each other?</span></li><li><span>How will my software impact those who don&#39;t use it?</span></li><li><span>Will the software amplify negative behavior for users and society at large?</span></li><li><span>On the flipside, will our software do good?</span></li></ul></li></ul><h3><a name="acceptance-and-inclusivity-testing" class="md-header-anchor"></a><span>Acceptance and Inclusivity Testing</span></h3><ul><li><p><span>Bias is the default: we are not our users and we bring our own biases</span></p><ul><li><span>Having diversity on the dev team is a great first step...but most dev teams do not reflect reality</span></li><li><span>Example: Non-diverse dev team at Google led to a photo-tagging feature that labled photos of Black people as gorillas</span></li></ul></li><li><p><span>People differ in a lot of cognitive ways as well: </span></p><ul><li><span>Motivations</span></li><li><span>Information processing stle</span></li><li><span>Computer self-efficacy</span></li><li><span>Risk averseness</span></li><li><span>Tech learning style</span></li><li><span>&quot;Covering different facets will result in covering different genders&quot; (so yeah, their thesis is basically women and men think differently ha)</span></li></ul></li><li><p><span>GenderMag: &quot;discount usability evaluation&quot;</span></p><ul><li><span>Persona-based evaluation, basically step through an application pretending to be someone else</span></li></ul></li><li><p><span>Curb-cut effect: Making things more inclusive benefits everyone!</span></p><ul><li><span>Curb-cuts benefit elderly, parents with strollers, etc.</span></li></ul></li><li><p><span>Usability testing: Directly measure the usability of inclusivity of our software by having real users perform tasks</span></p><ul><li><p><span>Consider a diverse set of users</span></p></li><li><p><span>He suggests doing this after GenderMag shit to &quot;validate problems (and fixes)&quot; identified in cognitive walkthroughs</span></p></li><li><p><span>Evaluating accessbility: Have disabled users go through your website</span></p></li><li><p><span>Can do live user studies with A/B testing --&gt; We should be ethical about the types of studies we design</span></p><ul><li><span>Can assign people at random or test a specific demographic</span></li></ul></li></ul></li></ul><h2><a name="module-12-estimation-and-productivity" class="md-header-anchor"></a><span>Module 12: Estimation and Productivity</span></h2><h3><a name="planning-software-projects" class="md-header-anchor"></a><span>Planning Software Projects</span></h3><ul><li><p><span>The tern &quot;software engineering&quot; was created at NATO conference to fix the &quot;software crisis&quot; -- software was terrible because there was no method/theory for how to build software</span></p></li><li><p><span>Problems with software estimations</span></p><ul><li><span>Projects are very different with each other</span></li><li><span>Different problems come up with each project</span></li></ul></li><li><p><span>Gantt Charts: Before you even start designing the software, plan things!</span></p><ul><li><span>Come up with design and implementation tasks, identify dependencies between these tasks, estimate how long each task will take = estimation for whole project</span></li><li><span>Problem with this approach: Very difficult to scale --&gt; The &quot;mythical man-month,&quot; you can&#39;t estimate how long a project will take based on &quot;man hours&quot; because it&#39;s often not partitionable, adding more people means adding more communication, etc.</span></li><li><span>Other problem: You&#39;ll have no idea how long an individual task will take (especially if you haven&#39;t </span><em><span>designed</span></em><span> it yet)</span></li></ul></li><li><p><span>Agile Methodology and Planning</span></p><ul><li><p><span>Break project into sprints</span></p></li><li><p><span>Each fixed-length sprint is planned independently</span></p></li><li><p><span>Planning might be a guess at first, but it gets better over time</span></p></li><li><p><span>Backlog --&gt; Big projects broken down into bite-sized chunks</span></p></li><li><p><span>Two ways to estimate during planning meetings:</span></p><ul><li><span>Planning poker: Teams play cards with numbers with the number of hours they think will be required, the team as a whole then looks at the numbers, discuss, and come to a consensus (I&#39;ve used this before, it&#39;s fun!)</span></li><li><span>Story Points: Coarser, relative size of scope of each task (small, medium, large, etc.)</span></li></ul></li><li><p><span>How many communication links (number of pairs on the team) are on your team? Makes work harder, grows exponentially with team size</span></p><ul><li><span>Non-agile teams: One for frontend, one for backend, one for database, all very large</span></li><li><span>Agile teams: Cross-cutting different parts of the stack, feature-based, small (5-9 people).</span></li></ul></li><li><p><span>Delivering on a deadline: need experience to estimate --&gt; no silver bullet to determine how long a project will take</span></p></li></ul></li></ul><h3><a name="metrics-in-software-engineering" class="md-header-anchor"></a><span>Metrics in Software Engineering</span></h3><ul><li><p><span>Sprint velocity = story points completed / story points planned --&gt; Are we staying on track and are our estimations good?</span></p></li><li><p><span>Lines of code (in general, per developer)</span></p><ul><li><span>Useless on its own, sometimes useful if looking at change over time</span></li></ul></li><li><p><span>Code quality: Bugs open/closed, tests passing/failing</span></p></li><li><p><span>McCabe Cyclometric Complexity: Analyze complexity of method based on control flow </span>
+<img src="./images/Cyclometric.png" referrerpolicy="no-referrer" alt="Cyclometric"></p><ul><li><span>Edges - Nodes + 2 * Connected Components (he does not say what &quot;connected components&quot;, but this graph has 1)</span></li></ul></li><li><p><span>How rigidly do we follow quantitative metrics?</span></p><ul><li><span>More lines of code are not better</span></li><li><span>Not finding bugs is not necessarily a good thing (you could just be ignoring them)</span></li><li><span>McCabe metric doesn&#39;t really measure if the code is harder to read --&gt; no correlation between cyclomatic complexity and errors/programmer comprehension/etc.</span></li></ul></li><li><p><span>We should be very skeptical of applying metrics against our code, and we should </span><em><span>especially</span></em><span> be skeptical of evaluating people based on metrics</span></p><ul><li><span>McNamara fallacy: focus only on quantitative, easy-to-measure metrics and end up optimizing for the wrong thing</span></li><li><span>People will just change their behaviors to meet those metrics (at the cost of being good developers)</span></li><li><span>Extrinsic rewards are in general not a good strategy</span></li></ul></li></ul><h3><a name="strategies-for-successful-software-teams" class="md-header-anchor"></a><span>Strategies for Successful Software Teams</span></h3><ul><li><p><span>Teams are important --&gt; Don&#39;t fall for the starry-eyed portrayal of &quot;the rock-star engineer&quot;</span></p></li><li><p><span>Three pillars of social skills (I cannot believe we are getting an actual class on this, wow, they really have no faith in CS majors)</span></p><ul><li><span>Humility</span></li><li><span>Respect</span></li><li><span>Trust</span></li></ul></li><li><p><span>Don&#39;t be an asshole in code review (&quot;Man, you totally got that wrong&quot;)</span></p></li><li><p><span>Knowledge sharing is also important: it needs to scale linearly (or sub-linearly) with org growth</span></p><ul><li><span>Mentorship</span></li><li><span>Q&amp;A</span></li><li><span>Mailing lists</span></li><li><span>Tech talks</span></li><li><span>Documentation</span></li></ul></li><li><p><span>Bus Factor --&gt; How many members of your team are irreplaceable? </span></p></li><li><p><span>Failures are inevitable: in software, humans, and processes</span></p><ul><li><p><span>The important thing is to learn from them</span></p></li><li><p><span>Post-mortems should happen after failures</span></p><ul><li><span>What went well?</span></li><li><span>What went wrong?</span></li><li><span>Where did we get lucky? </span></li><li><span>How do we prevent it from happening again?</span></li><li><span>BAD APPROACH: Name, blame, and shame --&gt; engineers are less likely to come forth with details about a failure, meaning that root causes are not being addressed</span></li><li><span>GOOD APPROACH: Blameless post-mortem. No pre-conceived notion of who&#39;s at fault, even if it </span><em><span>really looks like</span></em><span> someone&#39;s fault, no blaming anyone. </span></li></ul></li></ul></li></ul><h3><a name="measuring-engineering-productivity" class="md-header-anchor"></a><span>Measuring Engineering Productivity</span></h3><ul><li><p><span>Needs to be </span><em><span>some</span></em><span> way to measure improvement --&gt; improving productivity is the whole point of software engineering</span></p></li><li><p><span>Common approach in research: analyze open-source projects</span></p><ul><li><span>Do some languages have more errors than others?</span></li><li><span>Problem: lots of confounding variables</span></li></ul></li><li><p><span>Use both quantitative and qualitative metrics</span></p></li><li><p><span>Don&#39;t use metrics to incentivize behavior (hopefully then people won&#39;t change their behavior)</span></p></li><li><p><span>Google case study: Does having readability reviewers help or hurt productivity?</span></p><ul><li><p><span>Goal/Signal/Metric framework.</span></p><ul><li><span>Goal: Desired end result </span></li><li><span>Signal: What we&#39;d like to measure, but we can&#39;t</span></li><li><span>Metric: A proxy for a signal, which can actually be measured</span>
+<img src="./images/GoalFramework.png" referrerpolicy="no-referrer" alt="GoalFramework"></li></ul></li></ul></li><li><p><span>QUANTS components of engineering productivity</span></p><ul><li><span>Wuality of the code</span></li><li><span>Attention from engineers</span></li><li><span>Intellectual complexity</span></li><li><span>Tempo and velocity</span></li><li><span>Satisfaction</span></li></ul></li></ul></div>
+</body>
+</html>
